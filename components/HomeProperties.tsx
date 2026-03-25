@@ -1,11 +1,14 @@
-import { Property } from '@/models/types';
-import properties from '@/properties.json';
 import Link from 'next/link';
 import PropertyCard from './PropertyCard';
+import connectDb from '@/config/database';
+import { Property } from '@/models/Property';
 
-const HomeProperties = () => {
-   const propertiesData: Property[] = properties as Property[];
-   const recentProperties = propertiesData.slice(0, 3);
+const HomeProperties = async () => {
+   await connectDb();
+   const propertiesData = await Property.find({})
+      .sort({ createdAt: -1 })
+      .limit(3)
+      .lean();
 
    return (
       <>
@@ -14,9 +17,9 @@ const HomeProperties = () => {
                <h2 className="text-3xl font-bold text-blue-500 mb-6 text-center">
                   Recent Properties
                </h2>
-               {recentProperties.length === 0 ? (<p>No Properties found</p>) : (
+               {propertiesData.length === 0 ? (<p>No Properties found</p>) : (
                   <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
-                     {recentProperties.map((p) => (
+                     {propertiesData.map((p) => (
                         <PropertyCard key={p._id} property={p} />
                      ))}
                   </div>
