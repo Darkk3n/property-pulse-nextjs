@@ -53,4 +53,4 @@ const PropertySchema: Schema = new Schema({
     }
 }, { timestamps: true })
 
-export const Property = models.Property || model('User', PropertySchema)
+export const Property = models.Property || model('Property', PropertySchema)
