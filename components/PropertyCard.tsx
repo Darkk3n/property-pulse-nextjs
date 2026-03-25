@@ -3,11 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaBath, FaBed, FaMapMarker, FaMoneyBill, FaRulerCombined } from 'react-icons/fa';
 
-type PropertyCardProps = {
-   property: Property;
-}
-
-const PropertyCard = ({ property }: PropertyCardProps) => {
+const PropertyCard = ({ property }: { property: Property }) => {
    const getRateDisplay = () => {
       const { rates } = property
       if (rates.monthly) {
