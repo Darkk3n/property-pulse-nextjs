@@ -47,7 +47,6 @@ async function addProperty(formData: FormData) {
       },
       images,
    }
-   console.log(propertyData)
    const newProperty = new Property(propertyData);
    await newProperty.save()
 
