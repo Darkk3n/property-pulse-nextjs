@@ -125,9 +125,7 @@ const PropertyAddForm = () => {
       </div>
 
       <div className="mb-4">
-         <label className="block text-gray-700 font-bold mb-2"
-         >Amenities</label
-         >
+         <label className="block text-gray-700 font-bold mb-2">Amenities</label>
          <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
             <div>
                <input
@@ -207,9 +205,7 @@ const PropertyAddForm = () => {
                   value="Wheelchair Accessible"
                   className="mr-2"
                />
-               <label htmlFor="amenity_wheelchair_accessible"
-               >Wheelchair Accessible</label
-               >
+               <label htmlFor="amenity_wheelchair_accessible">Wheelchair Accessible</label>
             </div>
             <div>
                <input
