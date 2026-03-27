@@ -1,9 +1,9 @@
-import { Property } from "@/models/types";
+import { IProperty } from "@/models/Property";
 import Image from "next/image";
 import Link from "next/link";
 import { FaBath, FaBed, FaMapMarker, FaMoneyBill, FaRulerCombined } from 'react-icons/fa';
 
-const PropertyCard = ({ property }: { property: Property }) => {
+const PropertyCard = ({ property }: { property: IProperty }) => {
    const getRateDisplay = () => {
       const { rates } = property
       if (rates.monthly) {
@@ -18,7 +18,7 @@ const PropertyCard = ({ property }: { property: Property }) => {
 
    return <div className="rounded-xl shadow-md relative">
       <Image
-         src={`/images/properties/${property.images[0]}`}
+         src={`${property.images[0]}`}
          alt=""
          className="w-full h-auto rounded-t-xl"
          width='0'
