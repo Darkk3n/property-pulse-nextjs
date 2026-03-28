@@ -30,7 +30,7 @@ async function addProperty(formData: FormData) {
          street: formData.get('location.street'),
          city: formData.get('location.city'),
          zipcode: formData.get('location.zipcode'),
-
+         state: formData.get('location.state')
       },
       beds: formData.get('beds'),
       baths: formData.get('baths'),

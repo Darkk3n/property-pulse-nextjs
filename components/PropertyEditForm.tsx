@@ -1,7 +1,10 @@
+import updateProperty from "@/app/actions/updateProperty";
 import { IProperty } from "@/models/Property";
 
 const PropertyEditForm = ({ property }: { property: IProperty }) => {
-   return (<form>
+   const updatePropertyById = updateProperty.bind(null, property._id)
+
+   return (<form action={updatePropertyById}>
       <h2 className="text-3xl text-center font-semibold mb-6">
          Edit Property
       </h2>
@@ -387,7 +390,6 @@ const PropertyEditForm = ({ property }: { property: IProperty }) => {
             className="border rounded w-full py-2 px-3"
             accept="image/*"
             multiple
-            required
          />
       </div>
 
