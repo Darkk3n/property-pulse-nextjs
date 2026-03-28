@@ -4,6 +4,7 @@ import { IProperty } from "@/models/Property";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const ProfileProperties = ({ initialProperties }: { initialProperties: IProperty[] }) => {
    const [properties, setProperties] = useState<IProperty[]>(initialProperties);
@@ -16,6 +17,7 @@ const ProfileProperties = ({ initialProperties }: { initialProperties: IProperty
       const updatedProperties = properties.filter(p => p._id !== propertyId);
 
       setProperties(updatedProperties);
+      toast.success('Property deleted successfully');
    }
 
    return properties.map((p) => (

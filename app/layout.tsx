@@ -3,6 +3,8 @@ import AuthProvider from '@/components/AuthProvider';
 import Footer from '@/components/Footer';
 import NavBar from '@/components/NavBar';
 import React from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface MainLayoutProps {
     children: React.ReactNode;
@@ -22,6 +24,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
                     <NavBar />
                     <main>{children}</main>
                     <Footer />
+                    <ToastContainer />
                 </body>
             </html>
         </AuthProvider>
