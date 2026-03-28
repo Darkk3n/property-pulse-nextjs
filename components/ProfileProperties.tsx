@@ -1,4 +1,5 @@
 'use client'
+import deleteProperty from "@/app/actions/deleteProperty";
 import { IProperty } from "@/models/Property";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,6 +7,17 @@ import { useState } from "react";
 
 const ProfileProperties = ({ initialProperties }: { initialProperties: IProperty[] }) => {
    const [properties, setProperties] = useState<IProperty[]>(initialProperties);
+
+   const handleDeleteProperty = async (propertyId: string) => {
+      const confirmed = window.confirm('Are you sure you want to delete this Property?')
+      if (!confirmed) return;
+      await deleteProperty(propertyId)
+
+      const updatedProperties = properties.filter(p => p._id !== propertyId);
+
+      setProperties(updatedProperties);
+   }
+
    return properties.map((p) => (
       <div className="mb-10" key={p._id}>
          <Link href={`/properties/${p._id}`}>
@@ -29,7 +41,7 @@ const ProfileProperties = ({ initialProperties }: { initialProperties: IProperty
             </Link>
             <button
                className="bg-red-500 text-white px-3 py-2 rounded-md hover:bg-red-600"
-               type="button">
+               type="button" onClick={() => handleDeleteProperty(p._id)}>
                Delete
             </button>
          </div>
