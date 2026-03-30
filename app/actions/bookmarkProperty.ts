@@ -21,8 +21,8 @@ async function bookmarkProperty(propertyId: string) {
    let message: string;
 
    if (isBookmarked) {
-      user.bookmarks = user.bookmarks.filter((p: string) => p !== propertyId);
-      message = 'Bookmar Removed';
+      user.bookmarks = user.bookmarks.filter((p: string) => p.toString() !== propertyId.toString());
+      message = 'Bookmark Removed';
       isBookmarked = false;
    }
    else {
