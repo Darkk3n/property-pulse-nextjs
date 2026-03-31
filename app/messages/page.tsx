@@ -1,8 +1,9 @@
 import connectDb from '@/config/database';
-import { Message } from '@/models/Message';
+import { IMessagePopulated, Message } from '@/models/Message';
 import '@/models/Property';
 import { convertToSerializableObject } from '../../utils/convertToObject';
 import { getSessionUser } from '@/utils/getSessionUser';
+import MessageCard from '@/components/MessageCard';
 
 const MessagesPage = async () => {
     await connectDb();
@@ -25,11 +26,11 @@ const MessagesPage = async () => {
         .populate('property', 'name')
         .lean();
 
-    const messages = [...unreadMessages, ...readMessages].map((messageDoc) => {
+    const messages: IMessagePopulated[] = [...unreadMessages, ...readMessages].map((messageDoc) => {
         const message = convertToSerializableObject(messageDoc);
         message.sender = convertToSerializableObject(messageDoc.sender);
         message.property = convertToSerializableObject(messageDoc.property);
-        return message;
+        return message as IMessagePopulated;
     });
 
     return (<section className='bg-blue-50'>
@@ -39,9 +40,7 @@ const MessagesPage = async () => {
                 <div className="space-y-4">
                     {messages.length === 0 ? (<p>You have no messages</p>) : (
                         messages.map((m) => (
-                            <h3 key={m._id}>
-                                {m.name}
-                            </h3>
+                            <MessageCard key={m._id.toString()} message={m} />
                         ))
                     )}
                 </div>

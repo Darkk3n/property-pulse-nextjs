@@ -1,5 +1,24 @@
 import { Schema, model, models } from 'mongoose';
 
+export interface IMessage {
+   _id: string;
+   sender: string;
+   recipient: string;
+   property: string;
+   name: string;
+   email: string;
+   phone?: string;
+   body?: string;
+   read: boolean;
+   createdAt: string;
+   updatedAt: string;
+}
+
+export interface IMessagePopulated extends Omit<IMessage, 'sender' | 'property'> {
+   sender: { _id: string; username: string };
+   property: { _id: string; name: string };
+}
+
 const MessageSchema: Schema = new Schema(
    {
       sender: {
