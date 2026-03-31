@@ -3,18 +3,22 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+type IPropertySearchFilter = {
+   location: string;
+   propertyType: string;
+}
+
 const PropertySearchForm = () => {
-   const [location, setLocation] = useState('');
-   const [propertyType, setPropertyType] = useState('All');
+   const [filter, setFilter] = useState<IPropertySearchFilter>({ location: '', propertyType: 'All' })
    const router = useRouter();
    const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
       e.preventDefault();
 
-      if (location === '' && propertyType === 'All') {
+      if (filter.location === '' && filter.propertyType === 'All') {
          router.push('/properties');
       }
       else {
-         const query = `?location=${location}&propertyType=${propertyType}`;
+         const query = `?location=${filter.location}&propertyType=${filter.propertyType}`;
          router.push(`/properties/search-results${query}`);
       }
    }
@@ -28,8 +32,8 @@ const PropertySearchForm = () => {
                id="location"
                placeholder="Enter Location (City, State, Zip, etc"
                className="w-full px-4 py-3 rounded-lg bg-white text-gray-800 focus:outline-none focus:ring focus:ring-blue-500"
-               value={location}
-               onChange={(e) => setLocation(e.target.value)}
+               value={filter.location}
+               onChange={(e) => setFilter({ ...filter, location: e.target.value })}
             />
          </div>
          <div className="w-full md:w-2/5 md:pl-2">
@@ -37,8 +41,8 @@ const PropertySearchForm = () => {
             <select
                id="property-type"
                className="w-full px-4 py-3 rounded-lg bg-white text-gray-800 focus:outline-none focus:ring focus:ring-blue-500"
-               value={location}
-               onChange={(e) => setPropertyType(e.target.value)}
+               value={filter.propertyType}
+               onChange={(e) => setFilter({ ...filter, propertyType: e.target.value })}
             >
                <option value="All">All</option>
                <option value="Apartment">Apartment</option>
