@@ -34,4 +34,4 @@ const MessageSchema: Schema = new Schema(
 
    }, { timestamps: true })
 
-export const Message = models.Message || model('Messagechema', MessageSchema)
+export const Message = models.Message || model('MessageSchema', MessageSchema)
