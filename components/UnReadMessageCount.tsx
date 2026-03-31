@@ -1,4 +1,4 @@
-import { useGlobalContext } from '@/context/globalContext';
+import { useGlobalContext } from '@/context/GlobalContext';
 
 const UnReadMessageCount = () => {
     const { unreadCount } = useGlobalContext();
