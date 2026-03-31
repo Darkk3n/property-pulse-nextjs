@@ -1,3 +1,4 @@
+import Pagination from '@/components/Pagination';
 import PropertyCard from '@/components/PropertyCard';
 import connectDb from '@/config/database';
 import { IProperty, Property } from '@/models/Property';
@@ -6,8 +7,8 @@ import { HydratedDocument } from 'mongoose';
 interface SearchParams {
     location?: string;
     propertyType?: string;
-    page?: number;
-    pageSize?: number;
+    page?: string;
+    pageSize?: string;
 }
 
 interface PageProps {
@@ -15,15 +16,15 @@ interface PageProps {
     searchParams: SearchParams;
 }
 
-const PropertiesPage = async ({ searchParams: { page = 1, pageSize = 2 } }: PageProps) => {
+const PropertiesPage = async ({ searchParams: { page = "1", pageSize = "2" } }: PageProps) => {
     await connectDb();
-    const skip = (page - 1) * pageSize;
+    const skip = (parseInt(page) - 1) * parseInt(pageSize);
     const total = await Property.countDocuments({});
     const propertiesData: HydratedDocument<IProperty>[] | null = await Property
         .find({})
         .skip(skip)
-        .limit(pageSize);
-
+        .limit(parseInt(pageSize));
+    const showPagination = total > parseInt(pageSize);
     return (
         <section className='px-4 py-6'>
             <div className='container-xl lg:container m-auto px-4 py-6'>
@@ -34,6 +35,7 @@ const PropertiesPage = async ({ searchParams: { page = 1, pageSize = 2 } }: Page
                         ))}
                     </div>
                 )}
+                {showPagination && <Pagination page={parseInt(page)} pageSize={parseInt(pageSize)} totalItems={total} />}
             </div>
         </section>
     );
