@@ -23,6 +23,9 @@ importers:
       next-auth:
         specifier: ^4.24.13
         version: 4.24.13(next@14.2.35(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      photoswipe:
+        specifier: ^5.4.4
+        version: 5.4.4
       react:
         specifier: ^18
         version: 18.3.1
@@ -32,6 +35,9 @@ importers:
       react-icons:
         specifier: ^5.6.0
         version: 5.6.0(react@18.3.1)
+      react-photoswipe-gallery:
+        specifier: ^4.0.0
+        version: 4.0.0(photoswipe@5.4.4)(prop-types@15.8.1)(react@18.3.1)
       react-share:
         specifier: ^5.3.0
         version: 5.3.0(react@18.3.1)
@@ -493,6 +499,10 @@ packages:
   path-parse@1.0.7:
     resolution: {integrity: sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==}
 
+  photoswipe@5.4.4:
+    resolution: {integrity: sha512-WNFHoKrkZNnvFFhbHL93WDkW3ifwVOXSW3w1UuZZelSmgXpIGiZSNlZJq37rR8YejqME2rHs9EhH9ZvlvFH2NA==}
+    engines: {node: '>= 0.12.0'}
+
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
 
@@ -574,6 +584,9 @@ packages:
   pretty-format@3.8.0:
     resolution: {integrity: sha512-WuxUnVtlWL1OfZFQFuqvnvs6MiAGk9UNsBostyBOB0Is9wb5uRESevA6rnl/rkksXaGX3GzZhPup5d6Vp1nFew==}
 
+  prop-types@15.8.1:
+    resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}
+
   punycode@2.3.1:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
     engines: {node: '>=6'}
@@ -590,6 +603,16 @@ packages:
     resolution: {integrity: sha512-RH93p5ki6LfOiIt0UtDyNg/cee+HLVR6cHHtW3wALfo+eOHTp8RnU2kRkI6E+H19zMIs03DyxUG/GfZMOGvmiA==}
     peerDependencies:
       react: '*'
+
+  react-is@16.13.1:
+    resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
+
+  react-photoswipe-gallery@4.0.0:
+    resolution: {integrity: sha512-rpvGSBddLp1hZfTZgi3UFLJKlupHfDhW6e7w6jUUr5bagTWfrxJ7nB8yzNkx+BaoiMyy4FvJBwc4n/+QW2ft4g==}
+    peerDependencies:
+      photoswipe: '>= 5.2.2'
+      prop-types: '>= 15.7.0'
+      react: '>= 16.8.0'
 
   react-share@5.3.0:
     resolution: {integrity: sha512-NU4TqizVi2TuyLpN93/ng2ux+uIGHK5b2dT15cHvZDwfi5b5NuzGych4htCGObN8lubygeamhRxUot4lZ0Pv6Q==}
@@ -1081,6 +1104,8 @@ snapshots:
 
   path-parse@1.0.7: {}
 
+  photoswipe@5.4.4: {}
+
   picocolors@1.1.1: {}
 
   picomatch@2.3.2: {}
@@ -1143,6 +1168,12 @@ snapshots:
 
   pretty-format@3.8.0: {}
 
+  prop-types@15.8.1:
+    dependencies:
+      loose-envify: 1.4.0
+      object-assign: 4.1.1
+      react-is: 16.13.1
+
   punycode@2.3.1: {}
 
   queue-microtask@1.2.3: {}
@@ -1155,6 +1186,14 @@ snapshots:
 
   react-icons@5.6.0(react@18.3.1):
     dependencies:
+      react: 18.3.1
+
+  react-is@16.13.1: {}
+
+  react-photoswipe-gallery@4.0.0(photoswipe@5.4.4)(prop-types@15.8.1)(react@18.3.1):
+    dependencies:
+      photoswipe: 5.4.4
+      prop-types: 15.8.1
       react: 18.3.1
 
   react-share@5.3.0(react@18.3.1):
