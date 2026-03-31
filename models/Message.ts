@@ -7,7 +7,7 @@ const MessageSchema: Schema = new Schema(
          ref: 'User',
          required: true
       },
-      recepient: {
+      recipient: {
          type: Schema.Types.ObjectId,
          ref: 'User',
          required: true
@@ -34,4 +34,4 @@ const MessageSchema: Schema = new Schema(
 
    }, { timestamps: true })
 
-export const Message = models.Message || model('MessageSchema', MessageSchema)
+export const Message = models.Message || model('Message', MessageSchema)

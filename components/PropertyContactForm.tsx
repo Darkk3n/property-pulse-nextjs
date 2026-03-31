@@ -1,11 +1,37 @@
+'use client'
 import { IProperty } from "@/models/Property";
 import { FaPaperPlane } from "react-icons/fa";
+import { useEffect } from 'react';
+import { useFormState } from 'react-dom';
+import { useSession } from 'next-auth/react';
+import addMessage from '@/app/actions/addMessage';
+import { toast } from 'react-toastify'
 
 const PropertyContactForm = ({ property }: { property: IProperty }) => {
-   return (
+   const { data: session } = useSession();
+   const [state, formAction] = useFormState(addMessage, { submitted: false });
+   useEffect(() => {
+      if (state.error) {
+         toast.error(state.error)
+      }
+      if (state.submitted) {
+         toast.success('Message sent successfully')
+      }
+   }, [state])
+
+   if (state.submitted) {
+      return (
+         <p className="text-green-500 mb-4">
+            Your message has been sent
+         </p>
+      )
+   }
+   return session && (
       <div className="bg-white p-6 rounded-lg shadow-md">
          <h3 className="text-xl font-bold mb-6">Contact Property Manager</h3>
-         <form>
+         <form action={formAction}>
+            <input type='hidden' id='property' name='property' defaultValue={property._id} />
+            <input type='hidden' id='recipient' name='recipient' defaultValue={property.owner} />
             <div className="mb-4">
                <label
                   className="block text-gray-700 text-sm font-bold mb-2"
