@@ -3,6 +3,7 @@ import AuthProvider from '@/components/AuthProvider';
 import Footer from '@/components/Footer';
 import NavBar from '@/components/NavBar';
 import { GlobalProvider } from '@/context/GlobalContext';
+import 'photoswipe/dist/photoswipe.css';
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
