@@ -1,21 +1,10 @@
 import { IProperty } from "@/models/Property";
+import { getRateDisplay } from "@/utils/getRateDisplay";
 import Image from "next/image";
 import Link from "next/link";
 import { FaBath, FaBed, FaMapMarker, FaMoneyBill, FaRulerCombined } from 'react-icons/fa';
 
 const PropertyCard = ({ property }: { property: IProperty }) => {
-   const getRateDisplay = () => {
-      const { rates } = property
-      if (rates.monthly) {
-         return `$${rates.monthly.toLocaleString()}/mo`;
-      }
-      else if (rates.weekly) {
-         return `$${rates.weekly.toLocaleString()}/wk`;
-      }
-      else if (rates.nightly)
-         return `$${rates.nightly.toLocaleString()}/night`;
-   }
-
    return <div className="rounded-xl shadow-md relative">
       <Link href={`/properties/${property._id}`}>
          <Image
@@ -35,7 +24,7 @@ const PropertyCard = ({ property }: { property: IProperty }) => {
          <h3
             className="absolute top-[10px] right-[10px] bg-white px-4 py-2 rounded-lg text-blue-500 font-bold text-right md:text-center lg:text-right"
          >
-            {getRateDisplay()}
+            {getRateDisplay(property)}
          </h3>
 
          <div className="flex justify-center gap-4 text-gray-500 mb-4">
