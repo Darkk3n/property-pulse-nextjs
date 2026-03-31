@@ -1,22 +1,26 @@
 'use client'
 import deleteMessage from '@/app/actions/deleteMessage';
 import markMessageAsRead from '@/app/actions/markMessageAsRead';
+import { useGlobalContext } from '@/context/GlobalContext';
 import { IMessagePopulated } from '@/models/Message';
 import { useState } from 'react';
 import { toast } from 'react-toastify'
 const MessageCard = ({ message }: { message: IMessagePopulated }) => {
+    const { setUnreadCount } = useGlobalContext();
     const [isRead, setIsRead] = useState<boolean>(message.read);
     const [isDeleted, setIsDeleted] = useState<boolean>(false)
 
     const handleReadClick = async () => {
         const read = await markMessageAsRead(message._id);
         setIsRead(read);
+        setUnreadCount((prev) => read ? prev - 1 : prev + 1);
         toast.success(`Marked As ${read ? ' Read' : ' New'}`)
     }
 
     const handleDeleteClick = async () => {
         await deleteMessage(message._id);
         setIsDeleted(true);
+        setUnreadCount((prev) => isRead ? prev : prev - 1);
         toast.success('Message Deleted');
     }
 
