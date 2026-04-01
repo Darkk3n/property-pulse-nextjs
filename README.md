@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Property Pulse 🏠
 
-## Getting Started
+A high-performance, full-stack property management platform built with **Next.js 14**, **TypeScript**, and **MongoDB**. 
 
-First, run the development server:
+> **Technical Evolution:** Originally developed as a JavaScript-based training module, I completely re-architected this project into **Strict TypeScript**. This migration was driven by a requirement for enterprise-grade type safety, predictable data structures, and a more robust developer experience.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Key Engineering & Techniques
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+* **JS to TypeScript Migration:** Refactored the entire codebase to TS, implementing custom interfaces for Mongoose models (`HydratedDocument`) and Next.js Page Props to eliminate "any" types and runtime crashes.
+* **Secure Authentication (Next-Auth):** Integrated **Google OAuth** for a seamless, industry-standard authentication flow.
+* **Advanced Media Handling (Cloudinary):** Implemented dynamic image storage and optimization. 
+* **Interactive Galleries (PhotoSwipe):** Integrated high-performance lightboxes for a premium property-viewing experience.
+* **Data Integrity & Serialization:** * **Custom Serialization:** Engineered a recursive utility to bridge the gap between MongoDB's `ObjectIDs/Dates` and Next.js Server Components, preventing "Plain Object" errors.
+    * **Relational Mapping:** Solved complex Mongoose `.populate()` typing challenges using `Omit` and `Extension` interfaces.
+* **Dynamic Search Engine:** Built a multi-parameter filtering engine using Mongoose regex and logical operators for real-time property discovery.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Layer | Technology |
+| :--- | :--- |
+| **Framework** | Next.js 14 (App Router & Server Actions) |
+| **Language** | **TypeScript** (Complete Refactor from JS) |
+| **Database** | MongoDB via Mongoose 9 |
+| **Auth** | Next-Auth.js (Google Provider) |
+| **Media** | Cloudinary + PhotoSwipe |
+| **UI Polish** | Tailwind CSS, React Icons, Toastify, React Spinners |
 
-## Learn More
+## 🧩 Challenges Surpassed
 
-To learn more about Next.js, take a look at the following resources:
+### 1. Type-Safe Hydration
+Coming from a JavaScript background, managing Mongoose documents in TypeScript required a deep dive into `HydratedDocument`. I successfully implemented a pattern that maintains Mongoose's internal methods (like `.save()`) while ensuring strict property checking.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 2. The Next.js / Mongoose "Bridge"
+Next.js Server Components require "Plain Objects" to be passed to the Client. I developed a serialization layer that sanitizes complex MongoDB documents, ensuring the app remains stable during data handoffs.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 3. HMR Stability
+Resolved issues with Next.js Hot Module Replacement (HMR) attempting to re-compile Mongoose models by implementing a robust Singleton pattern for model exports.
